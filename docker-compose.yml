@@ -1,0 +1,55 @@
+services:
+  client:
+    build: ./Client
+    depends_on:
+      - loadbalancer
+    networks:
+      - loadbalancer-net
+
+  loadbalancer:
+    build: ./Server/LoadBalancer
+    ports:
+      - "5000:5000"
+    depends_on:
+      - server1
+      - server2
+      - server3
+      - server4
+    networks:
+      - loadbalancer-net
+
+  server1:
+    build: ./Server/Server1
+    hostname: server1
+    environment:
+      - HOSTNAME=server1
+    networks:
+      - loadbalancer-net
+
+  server2:
+    build: ./Server/Server2
+    hostname: server2
+    environment:
+      - HOSTNAME=server2
+    networks:
+      - loadbalancer-net
+
+  server3:
+    build: ./Server/Server3
+    hostname: server3
+    environment:
+      - HOSTNAME=server3
+    networks:
+      - loadbalancer-net
+
+  server4:
+    build: ./Server/Server4
+    hostname: server4
+    environment:
+      - HOSTNAME=server4
+    networks:
+      - loadbalancer-net
+
+networks:
+  loadbalancer-net:
+    driver: bridge
