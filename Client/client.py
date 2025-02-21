@@ -209,7 +209,7 @@ def run_test_phase(url, num_requests, phase_name, delay_between_requests=0.1):
 def main():
     """Main test execution function"""
     # Test configuration
-    NUM_REQUESTS = 100  # Increased number of requests to better show load effects
+    NUM_REQUESTS = 100  
     DELAY_BETWEEN = 0.05  # Smaller delay to increase server stress
     
     print("\n=== Load Balancing Demonstration ===")
@@ -247,7 +247,7 @@ def main():
             print(f"Error setting algorithm: {str(e)}")
             continue
             
-        time.sleep(3)  # Wait for algorithm change to take effect
+        time.sleep(3)  
         
         algorithm_metrics[algorithm] = run_test_phase(
             LOAD_BALANCER_URL, 
