@@ -62,7 +62,7 @@ The system handles different types of requests:
 ## How to Run
 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR-USERNAME/Load-Balancer.git
+git clone https://github.com/anjaliheda/Load-Balancer.git
 cd Load-Balancer
 ```
 
