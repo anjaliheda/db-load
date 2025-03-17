@@ -23,6 +23,9 @@ services:
     hostname: server1
     environment:
       - HOSTNAME=server1
+      - DATABASE_URL=mongodb://database:27017/loadbalancer
+    depends_on:
+      - database
     networks:
       - loadbalancer-net
 
@@ -31,6 +34,9 @@ services:
     hostname: server2
     environment:
       - HOSTNAME=server2
+      - DATABASE_URL=mongodb://database:27017/loadbalancer
+    depends_on:
+      - database
     networks:
       - loadbalancer-net
 
@@ -39,6 +45,9 @@ services:
     hostname: server3
     environment:
       - HOSTNAME=server3
+      - DATABASE_URL=mongodb://database:27017/loadbalancer
+    depends_on:
+      - database
     networks:
       - loadbalancer-net
 
@@ -47,9 +56,25 @@ services:
     hostname: server4
     environment:
       - HOSTNAME=server4
+      - DATABASE_URL=mongodb://database:27017/loadbalancer
+    depends_on:
+      - database
+    networks:
+      - loadbalancer-net
+
+  database:
+    image: mongo:latest
+    hostname: database
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
     networks:
       - loadbalancer-net
 
 networks:
   loadbalancer-net:
     driver: bridge
+
+volumes:
+  mongodb_data:
